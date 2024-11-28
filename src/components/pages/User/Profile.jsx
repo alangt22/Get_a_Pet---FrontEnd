@@ -1,7 +1,7 @@
 import React from 'react'
 import formStyles from '../../form/Form.module.css'
 import styles from './Profile.module.css'
-import Input from  '../../form/input'
+import Input from  '../../form/Input'
 import { useState, useEffect } from 'react'
 import api from '../../../utils/api'
 import useFlashMessage from '../../../hooks/useFlashMessage'
