@@ -1,0 +1,99 @@
+/* Navbar principal */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 1.5em;
+    background-color: #ffd400;
+    color: #16479d;
+    position: relative; /* Necessário para o menu hamburguer */
+}
+
+.navbar_logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar_logo img {
+    width: 40px;
+    margin-right: 0.8em;
+}
+
+.navbar ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Estilos dos itens do menu */
+.navbar li,
+.navbar a {
+    text-decoration: none;
+    color: #16479d;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 0.5em 0.8em;
+    border-radius: 5px;
+}
+
+.navbar li:hover {
+    background-color: #16479d;
+    color: #fff;
+}
+
+.navbar li:hover > a {
+    color: #fff;
+}
+
+/* Estilos para o menu hamburguer */
+.menuToggle {
+    margin-top: 0.5em;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.bar {
+    background-color: #16479d;
+    height: 4px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Responsividade - Escondendo o menu e exibindo o ícone hamburguer */
+@media (max-width: 768px) {
+    .navbar ul {
+        display: none; /* Esconde o menu em telas pequenas */
+        flex-direction: column;
+        width: 100%;
+        background-color: #ffd400;
+        position: absolute;
+        top: 60px; /* Distância do topo */
+        left: 0;
+        padding: 1em 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbarMenu.show {
+        display: flex; /* Exibe o menu quando a classe "show" for adicionada */
+    }
+
+    .menuToggle {
+        display: flex; /* Exibe o ícone do hamburguer */
+    }
+
+    .navbar li {
+        width: 100%;
+        text-align: center;
+        padding: 1em;
+    }
+
+    .navbar li:hover {
+        background-color: #16479d;
+        color: #fff;
+    }
+}
