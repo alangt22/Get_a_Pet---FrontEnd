@@ -1,10 +1,7 @@
 import api from '../../../utils/api'
-
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import styles from './AddPet.module.css'
-
 import PetForm from '../../form/PetForm'
 
 /* hooks */
@@ -15,6 +12,9 @@ function AddPet() {
   const { setFlashMessage } = useFlashMessage()
   const navigate = useNavigate()
 
+  // Estado para controlar o carregamento
+  const [isLoading, setIsLoading] = useState(false)
+
   async function registerPet(pet) {
     let msgType = 'success'
 
@@ -23,7 +23,7 @@ function AddPet() {
     const petFormData = await Object.keys(pet).forEach((key) => {
       if (key === 'images') {
         for (let i = 0; i < pet[key].length; i++) {
-          formData.append(`images`, pet[key][i])
+          formData.append('images', pet[key][i])
         }
       } else {
         formData.append(key, pet[key])
@@ -32,8 +32,10 @@ function AddPet() {
 
     formData.append('pet', petFormData)
 
+    setIsLoading(true)  // Inicia o loading
+
     const data = await api
-      .post(`pets/create`, formData, {
+      .post('pets/create', formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
           'Content-Type': 'multipart/form-data',
@@ -49,8 +51,10 @@ function AddPet() {
         return err.response.data
       })
 
+    setIsLoading(false)  // Finaliza o loading
+
     setFlashMessage(data.message, msgType)
-    if(msgType !== 'error') {
+    if (msgType !== 'error') {
       navigate('/pet/mypets')
     }
   }
@@ -61,7 +65,7 @@ function AddPet() {
         <h1>Cadastre um Pet</h1>
         <p>Depois ele ficará disponível para adoção</p>
       </div>
-      <PetForm handleSubmit={registerPet} btnText="Cadastrar" />
+      <PetForm handleSubmit={registerPet} btnText="Cadastrar" isLoading={isLoading} />
     </section>
   )
 }

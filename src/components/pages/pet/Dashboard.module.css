@@ -151,3 +151,17 @@
     padding: 0;
   }
 }
+
+
+
+.whatsappLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #25d366; /* WhatsApp green color */
+}
+
+.whatsappLink .faWhatsapp {
+  margin-right: 8px;
+  font-size: 18px;
+}
