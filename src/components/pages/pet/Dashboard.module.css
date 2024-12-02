@@ -152,16 +152,20 @@
   }
 }
 
-
-
+/* Estilo para o link do WhatsApp */
 .whatsappLink {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #25d366; /* WhatsApp green color */
+  color: #25D366;  /* Cor verde do WhatsApp */
+  text-decoration: none;  /* Remove o sublinhado */
+  font-weight: bold;  /* Deixa o texto em negrito */
+  transition: color 0.3s ease;  /* Efeito suave de transição para a cor no hover */
 }
 
-.whatsappLink .faWhatsapp {
-  margin-right: 8px;
-  font-size: 18px;
+/* Efeito de hover */
+.whatsappLink:hover {
+  color: #128C7E;  /* Cor do WhatsApp quando o mouse passa por cima */
 }
+.icon{
+  color: #16479d;
+  font-size: 1.5em;
+}
+

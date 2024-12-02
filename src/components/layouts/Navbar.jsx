@@ -1,4 +1,3 @@
-// src/components/layouts/Navbar.jsx
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
@@ -70,16 +69,16 @@ const Navbar = () => {
               <Link to="/user/profile" onClick={handleMenuItemClick}>Perfil</Link>
             </li>
             <li onClick={handleLogout}>Sair</li>
-            {/* Foto de perfil */}
+            {/* Foto de perfil ou bolinha verde indicando online */}
             <div className={styles.profilePicContainer}>
               {user && user.image ? (
-                <img 
-                  src={user.image}  // Exibe a foto de perfil
-                  alt="Foto do perfil" 
+                <img
+                  src={user.image.url || user.image}  // Garantir que a URL da imagem esteja acessível
+                  alt="Foto do perfil"
                   className={styles.profilePic}
                 />
               ) : (
-                <div className={styles.profilePic}>🐾</div>  // Caso não tenha foto, exibe um ícone
+                <div className={styles.onlineCircle}></div>  // Bolinha verde indicando "online"
               )}
             </div>
           </>

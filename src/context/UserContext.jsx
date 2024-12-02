@@ -1,29 +1,19 @@
-import { createContext, useState } from "react";
-import useAuth from '../hooks/useAuth'
+import React, { createContext } from "react";
 
-const Context = createContext()
+import useAuth from "../hooks/useAuth";
 
-function UserProvider({children}) {
-    const { authenticated, register, logout, login } = useAuth()
-    const [user, setUser] = useState({}) // Estado para armazenar as informações do usuário, incluindo a foto de perfil
+const Context = createContext();
 
-    // Atualizando o login para incluir a foto de perfil
-    const handleLogin = (userData) => {
-        login(userData); // Chama a função de login
-        setUser(userData); // Armazena as informações do usuário, incluindo foto
-    }
+function UserProvider({ children }) {
+  const { authenticated, loading, register, login, logout } = useAuth();
 
-    // Atualizando o registro para incluir a foto de perfil
-    const handleRegister = async (userData) => {
-        await register(userData);
-        setUser(userData); // Armazena as informações do usuário
-    }
-
-    return (
-        <Context.Provider value={{ authenticated, user, logout, handleLogin, handleRegister }}>
-            {children}
-        </Context.Provider>
-    )
+  return (
+    <Context.Provider
+      value={{ loading, authenticated, register, login, logout }}
+    >
+      {children}
+    </Context.Provider>
+  );
 }
 
-export { Context, UserProvider }
+export { Context, UserProvider };

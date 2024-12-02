@@ -36,19 +36,23 @@ const MyAdoptions = () => {
               />
               <span className="bold">{pet.name}</span>
               <div className={styles.contacts}>
-                <p>
-                  <span className='bold'>Ligue para: {pet.user.phone}</span>
-                </p>
-                <FontAwesomeIcon icon={faWhatsapp} />:<a 
-                 href={`https://api.whatsapp.com/send/?phone=${pet.user.phone}&text=Olá%20${pet.user.name},%20estou%20interessado%20em%20adotar%20seu%20pet.%20&type=phone_number&app_absent=0`}
-                 target="_blank"
-                 rel="noopener noreferrer" 
-                
-                >{pet.user.phone}</a>
-                <p>
-                  <span className='bold'>Fale com:</span> {pet.user.name}
-                </p>
-              </div>
+  <p>
+    <span className="bold">Ligue para:</span> <span> {pet.user.phone}</span>
+  </p>
+  <FontAwesomeIcon icon={faWhatsapp} className={styles.icon}/>
+  <a 
+    href={`https://api.whatsapp.com/send/?phone=${pet.user.phone}&text=Olá%20${pet.user.name},%20estou%20interessado%20em%20adotar%20seu%20pet.%20&type=phone_number&app_absent=0`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={styles.whatsappLink}  // Classe CSS para o link
+  >
+     {pet.user.phone}
+  </a>
+  <p>
+    <span className="bold">Fale com:</span> {pet.user.name}
+  </p>
+</div>
+
               <div className={styles.actions}>
                 {pet.available ? (
                   <p>Adoção em processo!</p>
