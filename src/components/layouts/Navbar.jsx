@@ -73,9 +73,9 @@ const Navbar = () => {
             </li>
             <li onClick={handleLogout}>Sair</li>
             <div className={styles.profilePicContainer}>
-              {user && user.profilePicture ? (
+              {user && user.image ? (
                 <img 
-                  src={user.profilePicture} // Aqui exibimos a foto de perfil
+                  src={user.image} // Aqui exibimos a foto de perfil
                   alt="Foto do perfil" 
                   className={styles.profilePic}
                 />
