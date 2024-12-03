@@ -1,9 +1,19 @@
 .footer{
-    height: 250px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #eee;
     color: #444;
     border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    margin-top: 94px;
+}
+.footer a{
+    text-decoration: none;
+    color: #16479d;
+    cursor: pointer;
+}
+.footer a:hover{
+    color: #d5b410;
 }

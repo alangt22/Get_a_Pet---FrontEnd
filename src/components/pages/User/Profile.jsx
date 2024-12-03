@@ -75,6 +75,7 @@ const Profile = () => {
                 />
             )}
         </div>
+        <h2 className={styles.perfil}>{user.name}</h2>
         <form onSubmit={handleSubmit} className={formStyles.form_container}>
             <Input
                 text='Imagem'

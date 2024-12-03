@@ -5,7 +5,7 @@
     padding: 1em 1.5em;
     background-color: #ffd400;
     color: #16479d;
-    position: relative; /* Necessário para o menu hamburguer */
+    position: relative;
 }
 
 .navbar_logo {
@@ -64,26 +64,26 @@
     border-radius: 5px;
 }
 
-/* Responsividade - Escondendo o menu e exibindo o ícone hamburguer */
+
 @media (max-width: 768px) {
     .navbar ul {
-        display: none; /* Esconde o menu em telas pequenas */
+        display: none; 
         flex-direction: column;
         width: 100%;
         background-color: #ffd400;
         position: absolute;
-        top: 60px; /* Distância do topo */
+        top: 60px; 
         left: 0;
         padding: 1em 0;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .navbarMenu.show {
-        display: flex; /* Exibe o menu quando a classe "show" for adicionada */
+        display: flex; 
     }
 
     .menuToggle {
-        display: flex; /* Exibe o ícone do hamburguer */
+        display: flex; 
     }
 
     .navbar li {
@@ -108,7 +108,7 @@
     background-color: green;
     border-radius: 50%;
     display: inline-block;
-    margin-left: 10px;  /* Ajuste para o ícone não ficar grudado */
+    margin-left: 10px;  
   }
   .onlineCircle span{
     color: #fff;
@@ -128,7 +128,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #ccc; /* Cor de fundo para a foto */
+    background-color: #ccc; 
     display: flex;
     align-items: center;
     justify-content: center;

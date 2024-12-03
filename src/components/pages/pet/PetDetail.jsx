@@ -72,7 +72,7 @@ const PetDetail = () => {
 
                     {/* Verifica se o usuário está logado */}
                     {token ? (
-                        <div className={NewStyles.form_container}>
+                        <div className={NewStyles.form_container_2}>
                             <button
                             type='submit'
                             onClick={schedule}
@@ -80,7 +80,7 @@ const PetDetail = () => {
                             className={NewStyles.submitButton}
                             >
                             {isLoading ? (
-                                <span className={NewStyles.loader}></span> // Exibe o loader quando estiver carregando
+                                <span className={NewStyles.loader_2}></span> // Exibe o loader quando estiver carregando
                             ) : (
                                 "Solicitar uma visita" // Texto do botão quando não estiver carregando
                             )}
