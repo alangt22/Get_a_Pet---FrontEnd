@@ -103,12 +103,18 @@
 
 /* Definição da bolinha verde */
 .onlineCircle {
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
     background-color: green;
     border-radius: 50%;
     display: inline-block;
     margin-left: 10px;  /* Ajuste para o ícone não ficar grudado */
+  }
+  .onlineCircle span{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   /* Outras estilizações do perfil */

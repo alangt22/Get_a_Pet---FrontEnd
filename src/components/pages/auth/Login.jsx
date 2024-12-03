@@ -10,14 +10,24 @@ import { Context } from '../../../context/UserContext'
 function Login() {
   const [user, setUser] = useState({})
   const { login } = useContext(Context)
+  
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleChange(e) {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    login(user)
+  async function handleSubmit (e) {
+     e.preventDefault();
+    setIsLoading(true); // Start loading
+
+    try {
+      await login(user)// Make sure register is an async function
+    } catch (error) {
+      console.error("Error during registration", error);
+    } finally {
+      setIsLoading(false); // Stop loading
+    }
   }
 
   return (
@@ -38,7 +48,17 @@ function Login() {
           placeholder="Digite a senha"
           handleOnChange={handleChange}
         />
-        <input type="submit" value="Entrar" />
+        <button
+          type="submit"
+          disabled={isLoading}  // Desabilitar o botão enquanto estiver carregando
+          className={styles.submitButton}
+        >
+          {isLoading ? (
+            <span className={styles.loader}></span> // Exibe o loader quando estiver carregando
+          ) : (
+            "Entrar" // Texto do botão quando não estiver carregando
+          )}
+        </button>
       </form>
       <p>
         Não tem conta? <Link to="/register">Clique aqui.</Link>

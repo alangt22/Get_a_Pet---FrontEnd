@@ -1,6 +1,7 @@
 import React from 'react'
 import formStyles from '../../form/Form.module.css'
 import styles from './Profile.module.css'
+import NewStyles from '../../form/Form.module.css'
 import Input from  '../../form/Input'
 import { useState, useEffect } from 'react'
 import api from '../../../utils/api'
@@ -12,6 +13,7 @@ const Profile = () => {
     const [preview, setPreview] = useState()
     const [token] = useState(localStorage.getItem('token') || '')
     const {setFlashMessage} = useFlashMessage()
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         api.get('/users/checkuser', {
@@ -35,7 +37,7 @@ const Profile = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-
+        setIsLoading(true);
         let msgType = 'success'
         
         const formData = new FormData()
@@ -55,8 +57,9 @@ const Profile = () => {
         }).catch((error) => {
             msgType = 'error'
             return error.response.data
+            
         })
-
+        setIsLoading(false);
         setFlashMessage(data.message, msgType)
     }
 
@@ -117,7 +120,17 @@ const Profile = () => {
                 placeholder='Confirme sua senha'
                 handleOnChange={handleChange}
             />
-            <input type="submit" value="Editar"/>
+            <button
+                type="submit"
+                disabled={isLoading}  // Desabilitar o botão enquanto estiver carregando
+                className={NewStyles.submitButton}
+                >
+                {isLoading ? (
+                    <span className={NewStyles.loader}></span> // Exibe o loader quando estiver carregando
+          ) : (
+            "Editar" // Texto do botão quando não estiver carregando
+          )}
+        </button>
         </form>
     </section>
   )

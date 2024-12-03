@@ -5,7 +5,7 @@ import logo from '../../assets/img/logo.png';  // Imagem do logo
 import { Context } from '../../context/UserContext';
 
 const Navbar = () => {
-  const { authenticated, logout, user } = useContext(Context); // Pegando o estado do usuário do contexto
+  const { authenticated, logout } = useContext(Context); // Pegando o estado do usuário do contexto
   const [menuOpen, setMenuOpen] = useState(false);  // Controle da visibilidade do menu
   const menuRef = useRef(null);  // Referência para o menu para manipular o clique fora do menu
 
@@ -69,18 +69,7 @@ const Navbar = () => {
               <Link to="/user/profile" onClick={handleMenuItemClick}>Perfil</Link>
             </li>
             <li onClick={handleLogout}>Sair</li>
-            {/* Foto de perfil ou bolinha verde indicando online */}
-            <div className={styles.profilePicContainer}>
-              {user && user.image ? (
-                <img
-                  src={user.image.url || user.image}  // Garantir que a URL da imagem esteja acessível
-                  alt="Foto do perfil"
-                  className={styles.profilePic}
-                />
-              ) : (
-                <div className={styles.onlineCircle}></div>  // Bolinha verde indicando "online"
-              )}
-            </div>
+            <div className={styles.onlineCircle}><span>on</span></div> 
           </>
         ) : (
           <>

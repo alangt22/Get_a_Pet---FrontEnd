@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import api from '../../../utils/api'
 import { useParams, Link } from 'react-router-dom'
 import styles from './PetDetail.module.css'
+import NewStyles from '../../form/Form.module.css'
+
 //hooks
 import useFlashMessage from '../../../hooks/useFlashMessage'
 
@@ -11,6 +13,7 @@ const PetDetail = () => {
     const { id } = useParams()
     const { setFlashMessage } = useFlashMessage()
     const [token] = useState(localStorage.getItem('token') || '')
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         api.get(`/pets/${id}`).then((response) => {
@@ -20,6 +23,7 @@ const PetDetail = () => {
 
     // Função para agendar a visita
     async function schedule() {
+        setIsLoading(true);
         let msgType = 'success'
 
         try {
@@ -35,6 +39,7 @@ const PetDetail = () => {
             // Caso haja erro, mostramos a mensagem de erro
             msgType = 'error'
             setFlashMessage(err.response?.data?.message || 'Erro ao agendar visita.', msgType)
+            setIsLoading(false);
         }
     }
 
@@ -67,7 +72,20 @@ const PetDetail = () => {
 
                     {/* Verifica se o usuário está logado */}
                     {token ? (
-                        <button onClick={schedule}>Solicitar uma visita</button>
+                        <div className={NewStyles.form_container}>
+                            <button
+                            type='submit'
+                            onClick={schedule}
+                            disabled={isLoading}  // Desabilitar o botão enquanto estiver carregando
+                            className={NewStyles.submitButton}
+                            >
+                            {isLoading ? (
+                                <span className={NewStyles.loader}></span> // Exibe o loader quando estiver carregando
+                            ) : (
+                                "Solicitar uma visita" // Texto do botão quando não estiver carregando
+                            )}
+                            </button>
+                        </div>
                     ) : (
                         <p>Você precisa <Link to='/register'>criar uma conta</Link> para solicitar a visita</p>
                     )}
