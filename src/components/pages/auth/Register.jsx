@@ -21,6 +21,22 @@ function Register() {
     setIsLoading(true); // Start loading
 
     try {
+      if (user.password !== user.confirmPassword) {
+        alert("As senhas não coincidem!");
+        return;
+      } else if (!user.phone) {
+        alert("Por favor, insira um número de telefone válido!");
+        return;
+      } else if (!user.email) {
+        alert("Por favor, insira um e-mail válido!");
+        return;
+      } else if (!user.name) {
+        alert("Por favor, insira um nome válido!");
+        return;
+      } else if (!user.password) {
+        alert("Por favor, insira uma senha válida!");
+        return; 
+      } 
       await register(user); // Make sure register is an async function
     } catch (error) {
       console.error("Error during registration", error);
